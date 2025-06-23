@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: creating my first cloud formation
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: passing the bucket name from outside
+
+Resources: 
+  Mys3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Name
+          Value: BucketName
+
+Outputs:
+  OutputtingBucketName:
+    Description: this created bucket name will be output
+    Value: !Ref Mys3Bucket          
+
+
+      
+      
